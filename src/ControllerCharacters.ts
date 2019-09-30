@@ -2,8 +2,8 @@ import { Character } from "./Character";
 
 // let c = new Character("damien", "test", "test");
 class ControllerCharacters {
-  Character: Character;
-  axios: any;
+  private Character: Character;
+  private axios: any;
   constructor(axios: any) {
     this.axios = axios;
     this.axios.defaults.baseURL = "https://character-database.becode.xyz/";
@@ -13,9 +13,10 @@ class ControllerCharacters {
   public async getCharacters() {
     try {
       const response = await this.axios.get("/characters");
-      console.log(response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
+      return null;
     }
   }
 }
