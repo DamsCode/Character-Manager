@@ -1,4 +1,4 @@
-export class Character {
+class Character {
   name: string;
   shortDescription: string;
   // image: File;
@@ -9,3 +9,4 @@ export class Character {
     this.description = description;
   }
 }
+export { Character };

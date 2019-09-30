@@ -1,5 +1,5 @@
-import { Character } from "./Character";
-const axios = require("axios");
-let c = new Character("damien", "test", "test");
-
-document.body.innerText = c.name;
+import Axios from "axios";
+import { ControllerCharacters } from "./ControllerCharacters";
+const ctrl = new ControllerCharacters(Axios);
+ctrl.getCharacters();
+// document.body.innerText = c.name;
