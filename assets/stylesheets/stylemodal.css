@@ -48,3 +48,22 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.list {
+    display: flex;
+    border: 2px solid black;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3%;
+    margin: 30px;
+    padding: 30px;
+}
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#titre {
+    text-align: center;
+}

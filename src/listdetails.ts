@@ -34,21 +34,24 @@ const details = async ({ target }: any) => {
 };
 
 ctrl.getAllCharacters().then(data => {
-  const myComponent = document.getElementById("test");
+  const myComponent = document.getElementById("list");
   data.forEach((element: any) => {
     if (myComponent) {
       const div = document.createElement("div");
       const name = document.createElement("h2");
-
+      const image = document.createElement("img");
       const shortDescription = document.createElement("h3");
       const btndetails = document.createElement("button");
       btndetails.innerText = "Details";
+      div.className = "list";
       btndetails.setAttribute("data-ids", element.id);
       btndetails.addEventListener("click", details);
       name.innerText = element.name;
-
+      image.src = "data:image/jpeg;base64," + element.image;
+      image.alt = "Image broken";
       shortDescription.innerText = element.shortDescription;
       div.appendChild(name);
+      div.appendChild(image);
       div.appendChild(shortDescription);
       div.appendChild(btndetails);
       myComponent.append(div);
