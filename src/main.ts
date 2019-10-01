@@ -7,6 +7,7 @@ ctrl.getCharacters().then(data => {
     const myComponent = document.getElementById("test");
     if (myComponent) {
       myComponent.innerHTML += element.name;
+      console.log(element.name);
     }
     // document.body.innerHTML += element.name ;
   });
