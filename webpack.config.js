@@ -1,10 +1,8 @@
 const path = require('path');
 
 module.exports = {
-    entry: {
-        list: './src/list.ts',
-        details: './src/details.ts',
-    },
+    entry: './src/listdetails.ts',
+    mode: 'development',
     module: {
         rules: [{
             test: /\.tsx?$/,
@@ -16,7 +14,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: '[name].js',
+        filename: 'listdetails.js',
         path: path.resolve(__dirname, 'public'),
     },
     watch: true
