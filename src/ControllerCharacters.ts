@@ -7,12 +7,13 @@ class ControllerCharacters {
   constructor(axios: any) {
     this.axios = axios;
     this.axios.defaults.baseURL = "https://character-database.becode.xyz/";
-    this.Character = new Character("dams", "dams", "dams");
+    this.Character = new Character("dams", "zfzefzef", "dams", "dams");
   }
 
   public async getCharacters() {
     try {
       const response = await this.axios.get("/characters");
+
       return response.data;
     } catch (error) {
       console.error(error);
