@@ -11,14 +11,17 @@ ctrl.getCharacters().then(data => {
 
 let inputSubmit = <HTMLElement>document.getElementById("submit");
 
-inputSubmit.addEventListener("click", async () => {
-  //input
-  let inputName = document.getElementById("name");
-  let inputShortDescription = document.getElementById("shortDescription");
-  let inputDescription = document.getElementById("description");
+inputSubmit.addEventListener("click", /* async () => { */
   // let inputImage = document.getElementById("image");
 
   async () => {
+    let inputName = (<HTMLInputElement>document.getElementById("name")).value;
+    let inputShortDescription = (<HTMLInputElement>(
+      document.getElementById("shortDescription")
+    )).value;
+    let inputDescription = (<HTMLInputElement>(
+      document.getElementById("description")
+    )).value;
     const rawResponse = await fetch(
       "https://character-database.becode.xyz/characters",
       {
@@ -28,9 +31,9 @@ inputSubmit.addEventListener("click", async () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name: "Super Sultan",
-          shortDescription: "Gros chat",
-          description: "Le chat qu'on ne voit jamais !"
+          name:  inputName ,
+          shortDescription: inputShortDescription,
+          description: inputDescription ,
         })
       }
     );
