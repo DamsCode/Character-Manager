@@ -5,13 +5,14 @@ let data: any;
 ctrl.getCharacters().then(data => {
   data.forEach((element: any) => {
     const myComponent = document.getElementById("test");
-    console.log(element.name);
+    console.log(element);
   });
 });
 
 let inputSubmit = <HTMLElement>document.getElementById("submit");
 
-inputSubmit.addEventListener("click", /* async () => { */
+inputSubmit.addEventListener(
+  "click" /* async () => { */,
   // let inputImage = document.getElementById("image");
 
   async () => {
@@ -22,26 +23,44 @@ inputSubmit.addEventListener("click", /* async () => { */
     let inputDescription = (<HTMLInputElement>(
       document.getElementById("description")
     )).value;
-    const rawResponse = await fetch(
-      "https://character-database.becode.xyz/characters",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name:  inputName ,
-          shortDescription: inputShortDescription,
-          description: inputDescription ,
-        })
-      }
-    );
-    const content = await rawResponse.json();
+    let picture = (<HTMLInputElement>document.getElementById("pic")).files;
+    let preview: any;
+    let reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      async function() {
+        preview = reader.result;
+        preview = preview.split(",");
+        console.log(preview[1]);
 
-    console.log(content);
-  };
-});
+        const rawResponse = await fetch(
+          "https://character-database.becode.xyz/characters",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: inputName,
+              shortDescription: inputShortDescription,
+              description: inputDescription,
+              image: preview[1]
+            })
+          }
+        );
+        const content = await rawResponse.json();
+
+        console.log(content);
+      },
+      false
+    );
+
+    if (picture) {
+      reader.readAsDataURL(picture[0]);
+    }
+  }
+);
 
 // import { AddCharacter } from "./creation_perso";
 /* import { Character } from "./Character";
