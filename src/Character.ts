@@ -13,6 +13,7 @@ class Character {
     this.image = image;
     this.shortDescription = shortDescription;
     this.description = description;
+    this.image = image;
   }
 }
 export { Character };

@@ -1,6 +1,5 @@
 import { Character } from "./Character";
 
-// let c = new Character("damien", "test", "test");
 class ControllerCharacters {
   private axios: any;
   constructor(axios: any) {
