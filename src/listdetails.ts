@@ -12,9 +12,8 @@ const closemodal = () => {
 
 const details = async ({ target }: any) => {
   const mydiv = document.getElementById("details");
-
   if (mydiv && modal) {
-    let id = target.getAttribute("data-ids");
+    let id = target.parentElement.getAttribute("data-ids");
     let chara = await ctrl.getOneCharacter(id);
     mydiv.innerHTML = "";
     const name = document.createElement("h2");
@@ -33,6 +32,13 @@ const details = async ({ target }: any) => {
   }
 };
 
+const delet = async ({ target }: any) => {
+  let id = target.parentElement.getAttribute("data-ids");
+  if (confirm("Are you sure do you want to delete this character ?")) {
+    await ctrl.deleteCharacter(id);
+  }
+};
+
 ctrl.getAllCharacters().then(data => {
   const myComponent = document.getElementById("list");
   data.forEach((element: any) => {
@@ -42,10 +48,14 @@ ctrl.getAllCharacters().then(data => {
       const image = document.createElement("img");
       const shortDescription = document.createElement("h3");
       const btndetails = document.createElement("button");
+      const btndelete = document.createElement("button");
       btndetails.innerText = "Details";
+      btndelete.innerText = "Delete";
       div.className = "list";
-      btndetails.setAttribute("data-ids", element.id);
+      div.setAttribute("data-ids", element.id);
       btndetails.addEventListener("click", details);
+      btndelete.addEventListener("click", delet);
+
       name.innerText = element.name;
       image.src = "data:image/jpeg;base64," + element.image;
       image.alt = "Image broken";
@@ -54,6 +64,7 @@ ctrl.getAllCharacters().then(data => {
       div.appendChild(image);
       div.appendChild(shortDescription);
       div.appendChild(btndetails);
+      div.appendChild(btndelete);
       myComponent.append(div);
     }
   });

@@ -14,7 +14,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'listdetails.js',
+        filename: 'js/listdetails.js',
         path: path.resolve(__dirname, 'public'),
     },
     watch: true

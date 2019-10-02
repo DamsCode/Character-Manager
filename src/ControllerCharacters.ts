@@ -27,5 +27,14 @@ class ControllerCharacters {
       return null;
     }
   }
+  public async deleteCharacter(id: string) {
+    try {
+      const response = await this.axios.delete(`/characters/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 }
 export { ControllerCharacters };
