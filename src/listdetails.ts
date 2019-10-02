@@ -33,9 +33,11 @@ const details = async ({ target }: any) => {
 };
 
 const delet = async ({ target }: any) => {
-  let id = target.parentElement.getAttribute("data-ids");
+  let id = target.parentElement.id;
   if (confirm("Are you sure do you want to delete this character ?")) {
     await ctrl.deleteCharacter(id);
+    const elem = <HTMLElement>document.getElementById(id);
+    elem.style.display = "none";
   }
 };
 
@@ -52,7 +54,7 @@ ctrl.getAllCharacters().then(data => {
       btndetails.innerText = "Details";
       btndelete.innerText = "Delete";
       div.className = "list";
-      div.setAttribute("data-ids", element.id);
+      div.id = element.id;
       btndetails.addEventListener("click", details);
       btndelete.addEventListener("click", delet);
 
