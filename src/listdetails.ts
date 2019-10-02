@@ -1,3 +1,4 @@
+import { Marked } from "marked-ts";
 import Axios from "axios";
 import { ControllerCharacters } from "./ControllerCharacters";
 const ctrl = new ControllerCharacters(Axios);
@@ -13,7 +14,7 @@ const closemodal = () => {
 const details = async ({ target }: any) => {
   const mydiv = document.getElementById("details");
   if (mydiv && modal) {
-    let id = target.parentElement.getAttribute("data-ids");
+    let id = target.parentElement.id;
     let chara = await ctrl.getOneCharacter(id);
     mydiv.innerHTML = "";
     const name = document.createElement("h2");
@@ -22,7 +23,7 @@ const details = async ({ target }: any) => {
     const description = document.createElement("p");
     name.innerText = chara.name;
     shortDescription.innerText = chara.shortDescription;
-    description.innerText = chara.description;
+    description.innerHTML = Marked.parse(chara.description);
     image.src = "data:image/jpeg;base64," + chara.image;
     image.alt = "Image broken";
     mydiv.appendChild(name);
@@ -34,10 +35,13 @@ const details = async ({ target }: any) => {
 
 const delet = async ({ target }: any) => {
   let id = target.parentElement.id;
+
   if (confirm("Are you sure do you want to delete this character ?")) {
-    await ctrl.deleteCharacter(id);
-    const elem = <HTMLElement>document.getElementById(id);
-    elem.style.display = "none";
+    const rep = await ctrl.deleteCharacter(id);
+    if (rep) {
+      const elem = <HTMLElement>document.getElementById(id);
+      elem.style.display = "none";
+    }
   }
 };
 
@@ -57,7 +61,6 @@ ctrl.getAllCharacters().then(data => {
       div.id = element.id;
       btndetails.addEventListener("click", details);
       btndelete.addEventListener("click", delet);
-
       name.innerText = element.name;
       image.src = "data:image/jpeg;base64," + element.image;
       image.alt = "Image broken";
