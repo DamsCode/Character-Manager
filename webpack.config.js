@@ -1,7 +1,11 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/main.ts",
+  entry: {
+    pageOne: "./src/main.ts",
+    Character_perso: "./src/addCharacter_perso.ts",
+    Edit_perso: "./src/edition_perso.ts"
+  },
   mode: "development",
   module: {
     rules: [
@@ -16,7 +20,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"]
   },
   output: {
-    filename: "main.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "public")
   },
   watch: true
