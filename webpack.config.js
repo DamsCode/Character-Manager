@@ -3,7 +3,6 @@ const path = require("path");
 module.exports = {
     entry: {
         listdetails: './src/listdetails.ts',
-        pageOne: "./src/main.ts",
         Character_perso: "./src/addCharacter_perso.ts",
         Edit_perso: "./src/edition_perso.ts"
     },
