@@ -2,8 +2,8 @@
 
 ## author
 
-1. Damien macors
-2. Jessica pirotte
+- Damien macors
+- Jessica pirotte
 
 ## Description
 
@@ -11,6 +11,6 @@ A client Comics fan would like to manage his favorites characters in a dashboard
 
 ## Technologie
 
-1. Typescript
-2. HTTP request (Axios)
-3. API
+- Typescript
+- HTTP request (Axios)
+- API
